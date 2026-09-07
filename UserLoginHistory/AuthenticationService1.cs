@@ -169,10 +169,11 @@ namespace UserLoginHistory
 
                 if (!passwordValid)
                 {
-                    FailedLoginResult failedResult = auditRepository.RecordFailedLogin(userId);
+                    FailedLoginResult failedResult =
+                        auditRepository.RecordFailedLogin(userId);
 
-                    result.FailedAttempts = failedResult.FailedAttempts;
-
+                    result.FailedAttempts =
+                        failedResult.FailedAttempts;
 
                     // ---------------------------------------------
                     // Account became locked
@@ -182,31 +183,50 @@ namespace UserLoginHistory
                     {
                         result.IsLocked = true;
 
-                        result.LockoutUntil = failedResult.LockoutUntil;
+                        result.LockoutUntil =
+                            failedResult.LockoutUntil;
 
-                        auditRepository.CreateLoginAudit(userId,dbUsername,ipAddress,AuditLocked,"Maximum failed login attempts");
+                        auditRepository.CreateLoginAudit(
+                            userId,
+                            dbUsername,
+                            ipAddress,
+                            AuditLocked,
+                            "Maximum failed login attempts"
+                        );
 
-                        result.Message = "Too many failed login attempts. " +  "Your account has been temporarily locked.";
+                        result.Message =
+                            "Too many failed login attempts. " +
+                            "Your account has been temporarily locked.";
 
                         return result;
                     }
 
-
                     // ---------------------------------------------
-                    // Failed but not locked
+                    // Failed password - account not locked
                     // ---------------------------------------------
 
-                    auditRepository.CreateLoginAudit(0,username,ipAddress,AuditFailed,"Invalid username");
+                    auditRepository.CreateLoginAudit(
+                        userId,
+                        dbUsername,
+                        ipAddress,
+                        AuditFailed,
+                        "Invalid password"
+                    );
 
-
-                    int remaining = MaxFailedAttempts - failedResult.FailedAttempts;
+                    int remaining =
+                        MaxFailedAttempts -
+                        failedResult.FailedAttempts;
 
                     if (remaining < 0)
                     {
                         remaining = 0;
                     }
 
-                    result.Message = "Invalid username or password. " + "Attempts remaining: " + remaining.ToString();
+                    result.Message =
+                        "Invalid username or password. " +
+                        "Attempts remaining: " +
+                        remaining.ToString();
+
                     return result;
                 }
 

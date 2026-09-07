@@ -13,8 +13,7 @@ namespace UserLoginHistory
         // Record failed login
         // =====================================================
 
-        public FailedLoginResult RecordFailedLogin(
-            int userId)
+        public FailedLoginResult RecordFailedLogin(int userId)
         {
             FailedLoginResult result = new FailedLoginResult();
 
@@ -24,10 +23,7 @@ namespace UserLoginHistory
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add(
-                        "@p_UserId",
-                        SqlDbType.Int).Value =
-                        userId;
+                    cmd.Parameters.Add("@UserId",SqlDbType.Int).Value = userId;
 
                     con.Open();
 

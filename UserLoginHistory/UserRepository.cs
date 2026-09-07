@@ -9,6 +9,55 @@ namespace UserLoginHistory
 {
     public class UserRepository
     {
+        public bool CreateUser(string username, string passwordHash, string passwordSalt)
+        {
+            using (SqlConnection con = DBHelper.GetConnection())
+            {
+                using (SqlCommand cmd = new SqlCommand(@"
+                    INSERT INTO Users
+                    (
+                        Username,
+                        PasswordHash,
+                        PasswordSalt,
+                        IsActive,
+                        FailedLoginAttempts,
+                        LockoutUntil,
+                        CreatedDate
+                    )
+                    VALUES
+                    (
+                        @Username,
+                        @PasswordHash,
+                        @PasswordSalt,
+                        1,
+                        0,
+                        NULL,
+                        GETDATE()
+                    )", con))
+                {
+                    cmd.Parameters.Add("@Username", SqlDbType.VarChar, 50).Value = username;
+                    cmd.Parameters.Add("@PasswordHash", SqlDbType.VarChar, 255).Value = passwordHash;
+                    cmd.Parameters.Add("@PasswordSalt", SqlDbType.VarChar, 255).Value = passwordSalt;
+
+                    con.Open();
+
+                    try
+                    {
+                        return cmd.ExecuteNonQuery() == 1;
+                    }
+                    catch (SqlException ex)
+                    {
+                        if (ex.Number == 2601 || ex.Number == 2627)
+                        {
+                            return false;
+                        }
+
+                        throw;
+                    }
+                }
+            }
+        }
+
         // =====================================================
         // Get user by username
         // =====================================================

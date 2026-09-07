@@ -17,6 +17,11 @@ namespace UserLoginHistory
                 txtUsername.Focus();
 
                 pnlMessage.Visible = false;
+
+                if (Request.QueryString["registered"] == "1")
+                {
+                    ShowMessage("Account created. You can sign in now.");
+                }
             }
         }
 

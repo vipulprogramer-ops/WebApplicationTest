@@ -189,6 +189,10 @@
 
                 </asp:Panel>
 
+                <div>
+                    New here? <a href="Register.aspx">Create an account</a>
+                </div>
+
             </div>
 
         </div>

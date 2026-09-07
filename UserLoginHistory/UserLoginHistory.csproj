@@ -64,6 +64,7 @@
     <Content Include="Default.aspx" />
     <Content Include="GeneratePassword.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="Register.aspx" />
     <Content Include="login.css" />
     <Content Include="TestPassword.aspx" />
     <Content Include="TestUser.aspx" />
@@ -95,6 +96,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
     <Compile Include="LoginResult.cs" />
     <Compile Include="NetworkHelper.cs" />

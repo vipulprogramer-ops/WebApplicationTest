@@ -84,6 +84,29 @@ namespace UserLoginHistory
             return dt;
         }
 
+        public DataTable GetUserById(int userId)
+        {
+            DataTable dt = new DataTable();
+
+            using (SqlConnection con = DBHelper.GetConnection())
+            {
+                using (SqlCommand cmd = new SqlCommand(@"
+                    SELECT UserId, Username, IsActive, CreatedDate
+                    FROM Users
+                    WHERE UserId = @UserId", con))
+                {
+                    cmd.Parameters.Add("@UserId", SqlDbType.Int).Value = userId;
+
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+
+            return dt;
+        }
+
         // =====================================================
         // Record failed login
         // =====================================================

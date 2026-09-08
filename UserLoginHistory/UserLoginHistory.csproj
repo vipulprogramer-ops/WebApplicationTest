@@ -61,6 +61,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AuthApi.asmx" />
     <Content Include="Default.aspx" />
     <Content Include="GeneratePassword.aspx" />
     <Content Include="Login.aspx" />
@@ -73,6 +74,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuditRepository.cs" />
+    <Compile Include="AuthApi.asmx.cs">
+      <DependentUpon>AuthApi.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="AuthenticationResult1.cs" />
     <Compile Include="AuthenticationService.cs" />
     <Compile Include="AuthenticationService1.cs" />

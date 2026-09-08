@@ -56,6 +56,7 @@ namespace UserLoginHistory
                 return UserLookupResponse.Failure("Unable to fetch user data.");
             }
         }
+
     }
 
     public class UserLookupResponse

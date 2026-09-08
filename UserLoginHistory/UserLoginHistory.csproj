@@ -65,6 +65,7 @@
     <Content Include="GeneratePassword.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Register.aspx" />
+    <Content Include="UserApi.asmx" />
     <Content Include="login.css" />
     <Content Include="TestPassword.aspx" />
     <Content Include="TestUser.aspx" />
@@ -123,6 +124,10 @@
       <DependentUpon>TestUser.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserRepository.cs" />
+    <Compile Include="UserApi.asmx.cs">
+      <DependentUpon>UserApi.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

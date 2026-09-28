@@ -193,6 +193,10 @@
                     New here? <a href="Register.aspx">Create an account</a>
                 </div>
 
+                <div>
+                    <a href="MobileOtpLogin.aspx">Sign in with mobile OTP</a>
+                </div>
+
             </div>
 
         </div>
